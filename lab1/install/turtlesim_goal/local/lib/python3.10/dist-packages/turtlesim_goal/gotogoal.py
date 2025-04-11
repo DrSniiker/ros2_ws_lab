@@ -5,7 +5,7 @@ import rclpy
 from rclpy.node import Node
 from turtlesim.msg import Pose
 from math import sqrt, atan2, pi
-from geometry_msgs.msg import Twist # !FIXME: Missing Twist msg type
+# FIXME: Missing Twist msg type
 
 
 class TurtleBot(Node):
@@ -42,10 +42,10 @@ class TurtleBot(Node):
 
     def euclidean_distance(self):
         """Distance between current position and goal"""
-        # !FIXME: Mathematical Error in Distance Calculation
+        # FIXME: Mathematical Error in Distance Calculation
         return sqrt(
-            (self.goal_pose.x - self.pose.x) ** 2
-            + (self.goal_pose.y - self.pose.y) ** 2
+            (self.goal_pose.x + self.pose.x) ** 2
+            + (self.goal_pose.y + self.pose.y) ** 2
         )
 
     def calculate_linear_velocity(self):
