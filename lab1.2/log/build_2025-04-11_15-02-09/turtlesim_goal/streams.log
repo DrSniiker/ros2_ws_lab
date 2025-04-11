@@ -1,0 +1,41 @@
+[0.011s] Invoking command in '/home/rosdev/ros2_ws_lab/lab1/build/turtlesim_goal': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rosdev/ros2_ws_lab/lab1/build/turtlesim_goal -- -j12 -l12
+[0.077s] Built target ament_cmake_python_copy_turtlesim_goal
+[0.383s] running egg_info
+[0.384s] writing turtlesim_goal.egg-info/PKG-INFO
+[0.384s] writing dependency_links to turtlesim_goal.egg-info/dependency_links.txt
+[0.384s] writing top-level names to turtlesim_goal.egg-info/top_level.txt
+[0.386s] reading manifest file 'turtlesim_goal.egg-info/SOURCES.txt'
+[0.387s] writing manifest file 'turtlesim_goal.egg-info/SOURCES.txt'
+[0.413s] Built target ament_cmake_python_build_turtlesim_goal_egg
+[0.425s] Invoked command in '/home/rosdev/ros2_ws_lab/lab1/build/turtlesim_goal' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rosdev/ros2_ws_lab/lab1/build/turtlesim_goal -- -j12 -l12
+[0.436s] Invoking command in '/home/rosdev/ros2_ws_lab/lab1/build/turtlesim_goal': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rosdev/ros2_ws_lab/lab1/build/turtlesim_goal
+[0.444s] -- Install configuration: ""
+[0.444s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/turtlesim_goal/environment/pythonpath.sh
+[0.444s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/turtlesim_goal/environment/pythonpath.dsv
+[0.444s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/local/lib/python3.10/dist-packages/turtlesim_goal-0.0.1-py3.10.egg-info
+[0.444s] -- Installing: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/local/lib/python3.10/dist-packages/turtlesim_goal-0.0.1-py3.10.egg-info/SOURCES.txt
+[0.444s] -- Installing: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/local/lib/python3.10/dist-packages/turtlesim_goal-0.0.1-py3.10.egg-info/dependency_links.txt
+[0.445s] -- Installing: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/local/lib/python3.10/dist-packages/turtlesim_goal-0.0.1-py3.10.egg-info/PKG-INFO
+[0.445s] -- Installing: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/local/lib/python3.10/dist-packages/turtlesim_goal-0.0.1-py3.10.egg-info/top_level.txt
+[0.445s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/local/lib/python3.10/dist-packages/turtlesim_goal
+[0.445s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/local/lib/python3.10/dist-packages/turtlesim_goal/__init__.py
+[0.445s] -- Installing: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/local/lib/python3.10/dist-packages/turtlesim_goal/gotogoal.py
+[0.483s] Listing '/home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/local/lib/python3.10/dist-packages/turtlesim_goal'...
+[0.483s] Compiling '/home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/local/lib/python3.10/dist-packages/turtlesim_goal/gotogoal.py'...
+[0.487s] -- Installing: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/lib/turtlesim_goal/gotogoal.py
+[0.488s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/ament_index/resource_index/package_run_dependencies/turtlesim_goal
+[0.488s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/ament_index/resource_index/parent_prefix_path/turtlesim_goal
+[0.488s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/turtlesim_goal/environment/ament_prefix_path.sh
+[0.488s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/turtlesim_goal/environment/ament_prefix_path.dsv
+[0.488s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/turtlesim_goal/environment/path.sh
+[0.488s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/turtlesim_goal/environment/path.dsv
+[0.488s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/turtlesim_goal/local_setup.bash
+[0.489s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/turtlesim_goal/local_setup.sh
+[0.489s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/turtlesim_goal/local_setup.zsh
+[0.489s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/turtlesim_goal/local_setup.dsv
+[0.489s] -- Installing: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/turtlesim_goal/package.dsv
+[0.489s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/ament_index/resource_index/packages/turtlesim_goal
+[0.489s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/turtlesim_goal/cmake/turtlesim_goalConfig.cmake
+[0.489s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/turtlesim_goal/cmake/turtlesim_goalConfig-version.cmake
+[0.489s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab1/install/turtlesim_goal/share/turtlesim_goal/package.xml
+[0.492s] Invoked command in '/home/rosdev/ros2_ws_lab/lab1/build/turtlesim_goal' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rosdev/ros2_ws_lab/lab1/build/turtlesim_goal
