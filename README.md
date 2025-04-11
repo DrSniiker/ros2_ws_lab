@@ -1,2 +1,3 @@
-# ros2_ws_lab
-Course labs for ROS2
+# Labbar
+
+ROS 2-labbar för kursen Robotiksystem.
