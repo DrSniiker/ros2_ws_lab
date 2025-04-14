@@ -96,6 +96,11 @@ class TurtleBot(Node):
     def controller_callback(self):
         """Waypoints stuff"""
         waypoints = eval(self.waypoints)
+        waypoints_len = len(waypoints)
+        waypoint_idx = 1
+
+        self.goal_pose.x = waypoints[waypoint_idx][0]
+        self.goal_pose.y = waypoints[waypoint_idx][1]
 
         """Main control loop - called 10 times per second"""
         if not self.moving_to_goal:
@@ -114,11 +119,13 @@ class TurtleBot(Node):
             # Stop the turtle
             vel_msg = Twist()
             self.velocity_publisher.publish(vel_msg)
+            waypoint_idx += 1
 
             # Mark goal as reached
-            self.moving_to_goal = False
-            self.get_logger().info(f"Goal reached! x={self.pose.x:.2f}, y={self.pose.y:.2f}")
-            return
+            if waypoint_idx == waypoints_len-1:
+                self.moving_to_goal = False
+                self.get_logger().info(f"Goal reached! x={self.pose.x:.2f}, y={self.pose.y:.2f}")
+                return
 
         # We need to keep moving toward the goal
         vel_msg = Twist()
