@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/rosdev/ros2_ws_lab/lab1/src/turtlesim_goal
+CMAKE_SOURCE_DIR = /home/rosdev/ros2_ws_lab/lab1.2/src/turtlesim_goal
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rosdev/ros2_ws_lab/lab1/build/turtlesim_goal
+CMAKE_BINARY_DIR = /home/rosdev/ros2_ws_lab/lab1.2/build/turtlesim_goal
 
 # Utility rule file for ament_cmake_python_copy_turtlesim_goal.
 
@@ -67,7 +67,7 @@ include CMakeFiles/ament_cmake_python_copy_turtlesim_goal.dir/compiler_depend.ma
 include CMakeFiles/ament_cmake_python_copy_turtlesim_goal.dir/progress.make
 
 CMakeFiles/ament_cmake_python_copy_turtlesim_goal:
-	/usr/bin/cmake -E copy_directory /home/rosdev/ros2_ws_lab/lab1/src/turtlesim_goal/turtlesim_goal /home/rosdev/ros2_ws_lab/lab1/build/turtlesim_goal/ament_cmake_python/turtlesim_goal/turtlesim_goal
+	/usr/bin/cmake -E copy_directory /home/rosdev/ros2_ws_lab/lab1.2/src/turtlesim_goal/turtlesim_goal /home/rosdev/ros2_ws_lab/lab1.2/build/turtlesim_goal/ament_cmake_python/turtlesim_goal/turtlesim_goal
 
 ament_cmake_python_copy_turtlesim_goal: CMakeFiles/ament_cmake_python_copy_turtlesim_goal
 ament_cmake_python_copy_turtlesim_goal: CMakeFiles/ament_cmake_python_copy_turtlesim_goal.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/ament_cmake_python_copy_turtlesim_goal.dir/clean:
 .PHONY : CMakeFiles/ament_cmake_python_copy_turtlesim_goal.dir/clean
 
 CMakeFiles/ament_cmake_python_copy_turtlesim_goal.dir/depend:
-	cd /home/rosdev/ros2_ws_lab/lab1/build/turtlesim_goal && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rosdev/ros2_ws_lab/lab1/src/turtlesim_goal /home/rosdev/ros2_ws_lab/lab1/src/turtlesim_goal /home/rosdev/ros2_ws_lab/lab1/build/turtlesim_goal /home/rosdev/ros2_ws_lab/lab1/build/turtlesim_goal /home/rosdev/ros2_ws_lab/lab1/build/turtlesim_goal/CMakeFiles/ament_cmake_python_copy_turtlesim_goal.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/rosdev/ros2_ws_lab/lab1.2/build/turtlesim_goal && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rosdev/ros2_ws_lab/lab1.2/src/turtlesim_goal /home/rosdev/ros2_ws_lab/lab1.2/src/turtlesim_goal /home/rosdev/ros2_ws_lab/lab1.2/build/turtlesim_goal /home/rosdev/ros2_ws_lab/lab1.2/build/turtlesim_goal /home/rosdev/ros2_ws_lab/lab1.2/build/turtlesim_goal/CMakeFiles/ament_cmake_python_copy_turtlesim_goal.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ament_cmake_python_copy_turtlesim_goal.dir/depend
 
