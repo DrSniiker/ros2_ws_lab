@@ -31,13 +31,19 @@ class TurtleBot(Node):
         self.pose = Pose()
         self.goal_pose = Pose()
         self.moving_to_goal = False
-        self.distance_tolerance = 0.1
+        self.distance_tolerance = 0.5
+        self.waypoint_idx = 0
+
 
         # For position logging
         self.last_log_time = 0.0
 
         # Waypoint parameter
-        self.declare_parameter("waypoints", "[[0.0, 0.0]]")
+        self.declare_parameter('waypoints', '[[1.0, 1.0], [8.8, 7.0], [1.0, 3.5]]')
+
+        self.waypoints = self.get_parameter('waypoints').value
+
+        self.get_logger().info(f'Using waypoints: {self.waypoints}')
 
     def update_pose(self, data):
         """Store the turtle's current position"""
@@ -95,12 +101,15 @@ class TurtleBot(Node):
 
     def controller_callback(self):
         """Waypoints stuff"""
-        waypoints = eval(self.waypoints)
-        waypoints_len = len(waypoints)
-        waypoint_idx = 1
+        waypoints_list = eval(self.waypoints)
+        waypoints_len = len(waypoints_list)
 
-        self.goal_pose.x = waypoints[waypoint_idx][0]
-        self.goal_pose.y = waypoints[waypoint_idx][1]
+        self.get_logger().info(f"WAYPOINTS_IDX: {self.waypoint_idx}")
+        self.get_logger().info(f"WAYPOINTS_LEN: {waypoints_len}")
+
+        if self.waypoint_idx < waypoints_len:
+            self.goal_pose.x = waypoints_list[self.waypoint_idx][0]
+            self.goal_pose.y = waypoints_list[self.waypoint_idx][1]
 
         """Main control loop - called 10 times per second"""
         if not self.moving_to_goal:
@@ -115,14 +124,18 @@ class TurtleBot(Node):
             self.last_log_time = current_time
 
         # If we're close enough to the goal, stop moving
+        self.get_logger().info(f"----------------------------")
         if self.euclidean_distance() < self.distance_tolerance:
             # Stop the turtle
             vel_msg = Twist()
             self.velocity_publisher.publish(vel_msg)
-            waypoint_idx += 1
+            self.waypoint_idx += 1
+
+            self.get_logger().info(f"WAYPOINTS_IDX: {self.waypoint_idx}")
+            self.get_logger().info(f"Waypoint reached")
 
             # Mark goal as reached
-            if waypoint_idx == waypoints_len-1:
+            if self.waypoint_idx >= waypoints_len:
                 self.moving_to_goal = False
                 self.get_logger().info(f"Goal reached! x={self.pose.x:.2f}, y={self.pose.y:.2f}")
                 return
@@ -169,9 +182,12 @@ def main():
                 # Wait for movement to complete
                 while turtlebot.moving_to_goal:
                     time.sleep(0.5)
+                
+                if turtlebot.moving_to_goal == False:
+                    break
 
             except ValueError:
-                print("Please enter valid numbers")
+                print("ERROR!")
 
     except KeyboardInterrupt:
         pass
