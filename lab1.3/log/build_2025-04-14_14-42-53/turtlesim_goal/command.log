@@ -1,0 +1,2 @@
+Invoking command in '/home/rosdev/ros2_ws_lab/lab1.3/build/turtlesim_goal': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rosdev/ros2_ws_lab/lab1.3/build/turtlesim_goal -- -j12 -l12
+Invoked command in '/home/rosdev/ros2_ws_lab/lab1.3/build/turtlesim_goal' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rosdev/ros2_ws_lab/lab1.3/build/turtlesim_goal -- -j12 -l12
