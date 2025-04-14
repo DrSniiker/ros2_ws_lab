@@ -1,4 +1,0 @@
-[0mCMake Error: The current CMakeCache.txt directory /home/rosdev/ros2_ws_lab/lab1.3/build/turtlesim_goal/CMakeCache.txt is different than the directory /home/rosdev/ros2_ws_lab/lab1/build/turtlesim_goal where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt[0m
-[0mCMake Error: The source directory "/home/rosdev/ros2_ws_lab/lab1/src/turtlesim_goal" does not exist.
-Specify --help for usage, or press the help button on the CMake GUI.[0m
-gmake: *** [Makefile:254: cmake_check_build_system] Error 1

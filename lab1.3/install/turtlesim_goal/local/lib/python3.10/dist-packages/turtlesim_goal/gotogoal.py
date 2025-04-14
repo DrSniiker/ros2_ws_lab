@@ -36,6 +36,9 @@ class TurtleBot(Node):
         # For position logging
         self.last_log_time = 0.0
 
+        # Waypoint parameter
+        self.declare_parameter("waypoints", "[[0.0, 0.0]]")
+
     def update_pose(self, data):
         """Store the turtle's current position"""
         self.pose = data
@@ -91,6 +94,14 @@ class TurtleBot(Node):
             return angle_diff * self.angular_speed_factor * 1.2
 
     def controller_callback(self):
+        """Waypoints stuff"""
+        waypoints = eval(self.waypoints)
+        waypoints_len = len(waypoints)
+        waypoint_idx = 1
+
+        self.goal_pose.x = waypoints[waypoint_idx][0]
+        self.goal_pose.y = waypoints[waypoint_idx][1]
+
         """Main control loop - called 10 times per second"""
         if not self.moving_to_goal:
             return
@@ -108,11 +119,13 @@ class TurtleBot(Node):
             # Stop the turtle
             vel_msg = Twist()
             self.velocity_publisher.publish(vel_msg)
+            waypoint_idx += 1
 
             # Mark goal as reached
-            self.moving_to_goal = False
-            self.get_logger().info(f"Goal reached! x={self.pose.x:.2f}, y={self.pose.y:.2f}")
-            return
+            if waypoint_idx == waypoints_len-1:
+                self.moving_to_goal = False
+                self.get_logger().info(f"Goal reached! x={self.pose.x:.2f}, y={self.pose.y:.2f}")
+                return
 
         # We need to keep moving toward the goal
         vel_msg = Twist()
@@ -150,34 +163,15 @@ def main():
 
     try:
         while True:
-            choice = input("\n1. Go to position, 2. Exit: ")
+            try:
+                turtlebot.moving_to_goal = True
 
-            if choice == "1":
-                try:
-                    x = float(input("X: "))
-                    y = float(input("Y: "))
+                # Wait for movement to complete
+                while turtlebot.moving_to_goal:
+                    time.sleep(0.5)
 
-                    # Set the goal and start moving
-                    turtlebot.get_logger().info(f"Moving to: x={x}, y={y}")
-                    x = abs(x) % 11
-                    y = abs(y) % 11
-
-                    turtlebot.goal_pose.x = x
-                    turtlebot.goal_pose.y = y
-                    turtlebot.moving_to_goal = True
-
-                    # Wait for movement to complete
-                    while turtlebot.moving_to_goal:
-                        time.sleep(0.5)
-
-                except ValueError:
-                    print("Please enter valid numbers")
-
-            elif choice == "2":
-                break
-
-            else:
-                print("Invalid choice")
+            except ValueError:
+                print("Please enter valid numbers")
 
     except KeyboardInterrupt:
         pass
