@@ -33,17 +33,68 @@ class TurtleBot(Node):
         self.moving_to_goal = False
         self.distance_tolerance = 0.5
         self.waypoint_idx = 0
+        self.init = True
 
 
         # For position logging
         self.last_log_time = 0.0
-
+        self.get_logger().info(f"Current position: x={self.pose.x:.2f}, y={self.pose.y:.2f}")
+        
         # Waypoint parameter
-        self.declare_parameter('waypoints', '[[1.0, 1.0], [8.8, 7.0], [1.0, 3.5]]')
+        # Structure X,Y in floats
+        # X,Y:X,Y
+        # : - seperator
+        self.declare_parameter('waypoints', ';0.0,0.0;4.0,5.0;')
 
         self.waypoints = self.get_parameter('waypoints').value
 
         self.get_logger().info(f'Using waypoints: {self.waypoints}')
+
+        # Create a list with waypoints
+        self.waypoints_list = []
+        for i in range(len(self.waypoints)):
+            self.get_logger().info(f"for i: {i}")
+            self.get_logger().info(f"for len list: {len(self.waypoints_list)}")
+            self.get_logger().info(f"for len waypoints: {len(self.waypoints)}")
+            if (self.waypoints[i] == ';' and i < len(self.waypoints)-1):
+                colon = self.waypoints.find(',', i)
+                temp_x = self.waypoints[i+1:colon-1:1]
+                semicolon = self.waypoints.find(';', colon)
+                temp_y = self.waypoints[colon+1:semicolon-1:1]
+                temp_list = [float(temp_x), float(temp_y)]
+                self.waypoints_list.append(temp_list)
+            else:
+                continue
+
+        self.get_logger().info(f'List: {self.waypoints_list}')
+        
+        # self.waypoints_list = []
+        # i = 0
+        # i_pnts = 0
+        # for t in self.waypoints:
+        #     self.get_logger().info(f"for i: {i}")
+        #     self.get_logger().info(f"for t: {t}")
+        #     self.get_logger().info(f"for i_pnts: {i_pnts}")
+        #     self.get_logger().info(f"for len list: {len(self.waypoints_list)}")
+        #     self.get_logger().info(f"for len waypoints: {len(self.waypoints)}")
+        #     if (t == ';' and i < len(self.waypoints)):
+        #         colon = self.waypoints.find(',', i)
+        #         temp_x = self.waypoints[i+1:colon-1:1]
+        #         semicolon = self.waypoints.find(';', colon)
+        #         temp_y = self.waypoints[colon+1:semicolon-1:1]
+        #         self.get_logger().info(f"temp_x: {temp_x}")
+        #         self.get_logger().info(f"temp_y: {temp_y}")
+        #         temo_list = [float(temp_x),float(temp_y)]
+        #         #self.waypoints_list[i_pnts].append(float(temp_x))
+        #         #self.waypoints_list[i_pnts].append(float(temp_y))
+        #         self.waypoints_list.append(temo_list)
+        #         self.get_logger().info(f"for len waypoints_list: {self.waypoints_list}")
+        #         i_pnts += 1
+        #     else:
+        #         i += 1
+        #         continue
+        #     i += 1
+
 
     def update_pose(self, data):
         """Store the turtle's current position"""
@@ -100,16 +151,21 @@ class TurtleBot(Node):
             return angle_diff * self.angular_speed_factor * 1.2
 
     def controller_callback(self):
+        #Init
+        while(self.init == True):
+            #Wait for update_pose
+            time.sleep(0.5)
+            self.init = False
+
         """Waypoints stuff"""
-        waypoints_list = eval(self.waypoints)
-        waypoints_len = len(waypoints_list)
+        waypoints_len = len(self.waypoints_list)
 
         self.get_logger().info(f"WAYPOINTS_IDX: {self.waypoint_idx}")
         self.get_logger().info(f"WAYPOINTS_LEN: {waypoints_len}")
 
         if self.waypoint_idx < waypoints_len:
-            self.goal_pose.x = waypoints_list[self.waypoint_idx][0]
-            self.goal_pose.y = waypoints_list[self.waypoint_idx][1]
+            self.goal_pose.x = self.waypoints_list[self.waypoint_idx][0]
+            self.goal_pose.y = self.waypoints_list[self.waypoint_idx][1]
 
         """Main control loop - called 10 times per second"""
         if not self.moving_to_goal:
