@@ -61,7 +61,9 @@ class TurtleBot(Node):
                 temp_x = self.waypoints[i+1:colon-1:1]
                 semicolon = self.waypoints.find(';', colon)
                 temp_y = self.waypoints[colon+1:semicolon-1:1]
-                temp_list = [float(temp_x), float(temp_y)]
+                temp_x = abs(float(temp_x))%10 + 0.5
+                temp_y = abs(float(temp_y))%10 + 0.5
+                temp_list = [temp_x, temp_y]
                 self.waypoints_list.append(temp_list)
             else:
                 continue
