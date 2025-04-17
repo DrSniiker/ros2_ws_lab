@@ -18,13 +18,14 @@ from rclpy.executors import ExternalShutdownException
 from rclpy.node import Node
 
 from std_msgs.msg import String
+from std_msgs.msg import Int32
 
 
 class Listener(Node):
     def __init__(self):
         super().__init__("niklas")
         self.sub = self.create_subscription(
-            String, "topic_1", self.chatter_callback, 10
+            Int32, "topic_1", self.chatter_callback, 10
         )
         self.sub = self.create_subscription(
             String, "topic_2", self.chatter_callback, 10
