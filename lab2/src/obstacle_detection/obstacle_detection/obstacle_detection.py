@@ -120,7 +120,9 @@ class ObstacleDetection(Node):
 
         self.get_logger().info(f"List len: {length}")
 
-        for i in range(int(length)/2):
+        for i in range(length//2):
+            self.get_logger().info(f"Scan range: {self.scan_ranges[i]}")
+            self.get_logger().info(f"Scan range: {self.scan_ranges[length-i-1]}")
             if self.scan_ranges[i] < self.scan_ranges[length-i-1]:
                 index = i
             else:
