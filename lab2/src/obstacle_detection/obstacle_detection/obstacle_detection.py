@@ -29,7 +29,7 @@ class ObstacleDetection(Node):
         
         # Default motion command (slow forward)
         self.tele_twist = Twist()
-        self.tele_twist.linear.x = 0.0
+        self.tele_twist.linear.x = 0.1
         self.tele_twist.angular.z = 0.0
 
         # Set up quality of service
@@ -88,6 +88,25 @@ class ObstacleDetection(Node):
         - For obstacle avoidance, implement turning when obstacles are detected
         - Try to find clear paths by checking different parts of the scan data
         """
+
+        # Obstacle detection logic
+        # Check if we have received scan data
+        if not self.has_scan_received:
+            self.get_logger().warn("No scan data received yet!")
+            return
+        
+        index = 0
+        len = len(self.scan_ranges)
+
+        for i in range(len):
+            if self.scan_ranges[i] < self.scan_ranges[len-i-1]:
+                index = i
+            else:
+                index = len-i-1
+
+        self.get_logger().info(f"Index: {index}")
+        self.get_logger().info(f"Min_distance: {self.scan_ranges[index]}")
+
         # Filter out invalid readings (very small values, infinity, or NaN)
         valid_ranges = [r for r in self.scan_ranges if not math.isinf(r) and not math.isnan(r) and r > 0.01]
         
