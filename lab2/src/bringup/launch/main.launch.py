@@ -113,7 +113,7 @@ def generate_launch_description():
         arguments=[
             '-file', burger_sdf,
             '-entity', 'tb1',
-            '-x', '-0.0', '-y', '-0.5', '-z', '0.01', '-Y', '0.0',
+            '-x', '-1.5', '-y', '-0.5', '-z', '0.01', '-Y', '0.0',
             '-unpause',
         ],
         output='screen',
@@ -137,7 +137,7 @@ def generate_launch_description():
     initial_pose_message = (
         '{header: {frame_id: map}, pose: {pose: {position: {x: '
         f'{-1.5}, y: {-0.5}, z: {0.01}'
-        '}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0000000}}, }}'
+        '}, orientation: {x: -4.0, y: 0.0, z: 0.0, w: 1.0000000}}, }}'
     )
     initial_pose_cmd = ExecuteProcess(
         cmd=['ros2', 'topic', 'pub', '-t', '3', '--qos-reliability', 'reliable', '/initialpose',
