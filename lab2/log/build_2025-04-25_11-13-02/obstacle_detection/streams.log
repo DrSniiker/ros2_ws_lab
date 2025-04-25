@@ -1,0 +1,44 @@
+[0.014s] Invoking command in '/home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection -- -j12 -l12
+[0.074s] Built target ament_cmake_python_copy_obstacle_detection
+[0.377s] running egg_info
+[0.378s] writing obstacle_detection.egg-info/PKG-INFO
+[0.378s] writing dependency_links to obstacle_detection.egg-info/dependency_links.txt
+[0.378s] writing top-level names to obstacle_detection.egg-info/top_level.txt
+[0.380s] reading manifest file 'obstacle_detection.egg-info/SOURCES.txt'
+[0.381s] writing manifest file 'obstacle_detection.egg-info/SOURCES.txt'
+[0.405s] Built target ament_cmake_python_build_obstacle_detection_egg
+[0.416s] Invoked command in '/home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection -- -j12 -l12
+[0.417s] Invoking command in '/home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection
+[0.425s] -- Install configuration: ""
+[0.425s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/environment/pythonpath.sh
+[0.425s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/environment/pythonpath.dsv
+[0.425s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/local/lib/python3.10/dist-packages/obstacle_detection-0.0.1-py3.10.egg-info
+[0.425s] -- Installing: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/local/lib/python3.10/dist-packages/obstacle_detection-0.0.1-py3.10.egg-info/SOURCES.txt
+[0.425s] -- Installing: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/local/lib/python3.10/dist-packages/obstacle_detection-0.0.1-py3.10.egg-info/dependency_links.txt
+[0.426s] -- Installing: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/local/lib/python3.10/dist-packages/obstacle_detection-0.0.1-py3.10.egg-info/PKG-INFO
+[0.426s] -- Installing: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/local/lib/python3.10/dist-packages/obstacle_detection-0.0.1-py3.10.egg-info/top_level.txt
+[0.426s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/local/lib/python3.10/dist-packages/obstacle_detection
+[0.426s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/local/lib/python3.10/dist-packages/obstacle_detection/__init__.py
+[0.426s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/local/lib/python3.10/dist-packages/obstacle_detection/lidar_visualizer.py
+[0.426s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/local/lib/python3.10/dist-packages/obstacle_detection/obstacle_detection.py
+[0.461s] Listing '/home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/local/lib/python3.10/dist-packages/obstacle_detection'...
+[0.464s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/lib/obstacle_detection/obstacle_detection.py
+[0.465s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/lib/obstacle_detection/lidar_visualizer.py
+[0.465s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/launch
+[0.465s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/launch/obstacle_detection.launch.py
+[0.465s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/ament_index/resource_index/package_run_dependencies/obstacle_detection
+[0.465s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/ament_index/resource_index/parent_prefix_path/obstacle_detection
+[0.465s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/environment/ament_prefix_path.sh
+[0.466s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/environment/ament_prefix_path.dsv
+[0.466s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/environment/path.sh
+[0.466s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/environment/path.dsv
+[0.466s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/local_setup.bash
+[0.466s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/local_setup.sh
+[0.466s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/local_setup.zsh
+[0.466s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/local_setup.dsv
+[0.466s] -- Installing: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/package.dsv
+[0.466s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/ament_index/resource_index/packages/obstacle_detection
+[0.466s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/cmake/obstacle_detectionConfig.cmake
+[0.467s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/cmake/obstacle_detectionConfig-version.cmake
+[0.467s] -- Up-to-date: /home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection/share/obstacle_detection/package.xml
+[0.468s] Invoked command in '/home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection

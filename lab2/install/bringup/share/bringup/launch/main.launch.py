@@ -18,6 +18,8 @@ def generate_launch_description():
     bringup_dir = get_package_share_directory('bringup')
     gazebo_ros_dir = get_package_share_directory('gazebo_ros')
     nav2_bt_navigator_dir = get_package_share_directory('nav2_bt_navigator')
+    # obstacle detection
+    obstacle_detection_dir = get_package_share_directory('obstacle_detection')
 
     # Default paths for files
     default_rviz_config = os.path.join(bringup_dir, 'rviz', 'nav2_default_view.rviz')
@@ -30,6 +32,8 @@ def generate_launch_description():
         'behavior_trees', 'navigate_w_replanning_and_recovery.xml'
     )
     burger_sdf = os.path.join(bringup_dir,'models', 'turtlebot3_burger', 'model.sdf')
+    # obstacle detection
+    obstacle_detection_launch = os.path.join(obstacle_detection_dir, 'launch', 'obstacle_detection.launch.py')
 
     # Read URDF file content
     with open(urdf_file, 'r') as infp:
@@ -166,6 +170,13 @@ def generate_launch_description():
         condition=IfCondition(enable_rviz)
     )
 
+    # obstacle detection
+    obstacle_detection_cmd = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(obstacle_detection_launch)
+        )
+    )
+
     # --- Event Handlers ---
     # Set initial pose and start RViz after spawning
     post_spawn_event = RegisterEventHandler(
@@ -194,5 +205,7 @@ def generate_launch_description():
     ld.add_action(nav2_bringup_cmd)
 
     ld.add_action(post_spawn_event) 
+
+    ld.add_action(obstacle_detection_cmd)
 
     return ld

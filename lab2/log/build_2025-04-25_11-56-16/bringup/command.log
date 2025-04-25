@@ -1,0 +1,4 @@
+Invoking command in '/home/rosdev/ros2_ws_lab/lab2/build/bringup': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rosdev/ros2_ws_lab/lab2/build/bringup -- -j12 -l12
+Invoked command in '/home/rosdev/ros2_ws_lab/lab2/build/bringup' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/rosdev/ros2_ws_lab/lab2/build/bringup -- -j12 -l12
+Invoking command in '/home/rosdev/ros2_ws_lab/lab2/build/bringup': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rosdev/ros2_ws_lab/lab2/build/bringup
+Invoked command in '/home/rosdev/ros2_ws_lab/lab2/build/bringup' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/rosdev/ros2_ws_lab/lab2/build/bringup
