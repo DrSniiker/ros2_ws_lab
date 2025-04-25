@@ -11,7 +11,6 @@ from launch_ros.actions import Node
 from launch.conditions import IfCondition
 from launch.event_handlers import OnProcessExit
 from launch.utilities import perform_substitutions
-from launch.substitutions import PathJoinSubstitution, FindPackageShare
 
 
 def generate_launch_description():
@@ -19,6 +18,8 @@ def generate_launch_description():
     bringup_dir = get_package_share_directory('bringup')
     gazebo_ros_dir = get_package_share_directory('gazebo_ros')
     nav2_bt_navigator_dir = get_package_share_directory('nav2_bt_navigator')
+    # obstacle detection
+    obstacle_detection_dir = get_package_share_directory('obstacle_detection')
 
     # Default paths for files
     default_rviz_config = os.path.join(bringup_dir, 'rviz', 'nav2_default_view.rviz')
@@ -31,6 +32,8 @@ def generate_launch_description():
         'behavior_trees', 'navigate_w_replanning_and_recovery.xml'
     )
     burger_sdf = os.path.join(bringup_dir,'models', 'turtlebot3_burger', 'model.sdf')
+    # obstacle detection
+    obstacle_detection_launch = os.path.join(obstacle_detection_dir, 'launch', 'obstacle_detection.launch.py')
 
     # Read URDF file content
     with open(urdf_file, 'r') as infp:
@@ -155,15 +158,11 @@ def generate_launch_description():
     )
 
     # obstacle detection
-    obstacle_detection_source = PythonLaunchDescriptionSource([
-        PathJoinSubstitution([
-            FindPackageShare('obstacle_detection'),
-            'launch', 'obstacle_detection.launch.py'
-        ])
-    ])
-    include_obstacle_detection = IncludeLaunchDescription(
-        launch_description_source = obstacle_detection_source,
-        launch_arguments={'use_sim_time': use_sim_time}.items(),
+    obstacle_detection_cmd = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(obstacle_detection_launch)
+        ),
+        launch_arguments = {'use_sim_time': use_sim_time},
     )
 
     # --- Event Handlers ---
@@ -193,6 +192,6 @@ def generate_launch_description():
 
     ld.add_action(post_spawn_event) 
 
-    ld.add_action(include_obstacle_detection)
+    ld.add_action(obstacle_detection_cmd)
 
     return ld
