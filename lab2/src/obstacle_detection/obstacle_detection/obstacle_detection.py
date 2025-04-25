@@ -89,28 +89,6 @@ class ObstacleDetection(Node):
         - Try to find clear paths by checking different parts of the scan data
         """
 
-        # Obstacle detection logic
-        # Check if we have received scan data
-        if not self.has_scan_received:
-            self.get_logger().warn("No scan data received yet!")
-            return
-        
-        index = 0
-        length = len(self.scan_ranges)
-
-        self.get_logger().info(f"List len: {length}")
-
-        for i in range(length//2):
-            self.get_logger().info(f"Scan range: {self.scan_ranges[i]}")
-            self.get_logger().info(f"Scan range: {self.scan_ranges[length-i-1]}")
-            if self.scan_ranges[i] < self.scan_ranges[length-i-1]:
-                index = i
-            else:
-                index = length-i-1
-
-        self.get_logger().info(f"Index: {index}")
-        self.get_logger().info(f"Min_distance: {self.scan_ranges[index]}")
-
         # Filter out invalid readings (very small values, infinity, or NaN)
         valid_ranges = [r for r in self.scan_ranges if not math.isinf(r) and not math.isnan(r) and r > 0.01]
         
@@ -122,8 +100,23 @@ class ObstacleDetection(Node):
         # Find the closest obstacle in any direction (full 360° scan)
         obstacle_distance = min(valid_ranges)
 
-        # TODO: Implement your obstacle detection logic here!
+        # !TODO: Implement your obstacle detection logic here!
         # Remember to use obstacle_distance and self.stop_distance in your implementation.
+        index = 0
+        length = len(self.scan_ranges)
+
+        self.get_logger().info(f"List len: {length}")
+
+        for i in range(length//2):
+            self.get_logger().info(f"Lista[i]: {self.scan_ranges[i]}")
+            self.get_logger().info(f"Lista[len-i]: {self.scan_ranges[length-i-1]}")
+            if self.scan_ranges[i] < self.scan_ranges[length-i-1]:
+                index = i
+            else:
+                index = length-i-1
+
+        self.get_logger().info(f"Index: {index}")
+        self.get_logger().info(f"Min_distance: {self.scan_ranges[index]}")
         
         # For now, just use the teleop command (unsafe - replace with your code)
         twist = self.tele_twist
