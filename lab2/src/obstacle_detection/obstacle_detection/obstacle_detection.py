@@ -96,13 +96,13 @@ class ObstacleDetection(Node):
             return
         
         index = 0
-        len = len(self.scan_ranges)
+        length = len(self.scan_ranges)
 
-        for i in range(len):
-            if self.scan_ranges[i] < self.scan_ranges[len-i-1]:
+        for i in range(length/2):
+            if self.scan_ranges[i] < self.scan_ranges[length-i-1]:
                 index = i
             else:
-                index = len-i-1
+                index = length-i-1
 
         self.get_logger().info(f"Index: {index}")
         self.get_logger().info(f"Min_distance: {self.scan_ranges[index]}")
