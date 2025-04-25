@@ -174,8 +174,7 @@ def generate_launch_description():
     obstacle_detection_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(obstacle_detection_launch)
-        ),
-        launch_arguments = { 'use_sim_time': use_sim_time }.items()
+        )
     )
 
     # --- Event Handlers ---
