@@ -6,6 +6,9 @@ from rclpy.qos import qos_profile_sensor_data
 from rclpy.qos import QoSProfile
 from sensor_msgs.msg import LaserScan
 import math
+from nav_msgs.msg import Odometry
+from geometry_msgs.msg import Pose
+from tf_transformations import euler_from_quaternion
 
 
 class ObstacleDetection(Node):
