@@ -29,7 +29,7 @@ class ObstacleDetection(Node):
         
         # Default motion command (slow forward)
         self.tele_twist = Twist()
-        self.tele_twist.linear.x = 0.2
+        self.tele_twist.linear.x = 0.0
         self.tele_twist.angular.z = 0.0
 
         # Set up quality of service
