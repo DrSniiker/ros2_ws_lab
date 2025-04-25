@@ -38,3 +38,8 @@ lab2/src/obstacle_detection/obstacle_detection/obstacle_detection.py
 #### geometry_msgs/msg/TwistWithCovariance twist
 ##### geometry_msgs/msg/Twist twist
 
+För att röra på sig skicka Twist medelande till /cmd_vel noden
+```
+twist = self.tele_twist
+self.cmd_vel_pub.publish(twist)
+```
