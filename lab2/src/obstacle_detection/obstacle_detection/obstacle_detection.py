@@ -98,7 +98,7 @@ class ObstacleDetection(Node):
         index = 0
         length = len(self.scan_ranges)
 
-        for i in range(length/2.0):
+        for i in range(int(length)/2):
             if self.scan_ranges[i] < self.scan_ranges[length-i-1]:
                 index = i
             else:
