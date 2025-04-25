@@ -1,0 +1,6 @@
+Invoking command in '/home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/rosdev/ros2_ws_lab/lab2/src/obstacle_detection -DCMAKE_INSTALL_PREFIX=/home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection
+Invoked command in '/home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/rosdev/ros2_ws_lab/lab2/src/obstacle_detection -DCMAKE_INSTALL_PREFIX=/home/rosdev/ros2_ws_lab/lab2/install/obstacle_detection
+Invoking command in '/home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection -- -j12 -l12
+Invoked command in '/home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection -- -j12 -l12
+Invoking command in '/home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection
+Invoked command in '/home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/rosdev/ros2_ws_lab/lab2/build/obstacle_detection
