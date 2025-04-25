@@ -103,7 +103,7 @@ class ObstacleDetection(Node):
         # !TODO: Implement your obstacle detection logic here!
         # Remember to use obstacle_distance and self.stop_distance in your implementation.
         min_index = self.scan_ranges.index(obstacle_distance)
-        self.logger.info(f"Closest obstacle at index {min_index} with distance {obstacle_distance:.2f}m")
+        self.get_logger().info(f"Closest obstacle at index {min_index} with distance {obstacle_distance:.2f}m")
         
         # For now, just use the teleop command (unsafe - replace with your code)
         twist = self.tele_twist
