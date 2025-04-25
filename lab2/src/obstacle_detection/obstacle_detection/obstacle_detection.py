@@ -22,7 +22,8 @@ class ObstacleDetection(Node):
         self.declare_parameter("stop_distance", 0.35)  # Default if not specified
         self.stop_distance = self.get_parameter("stop_distance").get_parameter_value().double_value
         self.get_logger().info(f"Using stop_distance: {self.stop_distance}m")
-        
+        self.pose = Pose()
+        self.odom_sub = self.create_subscription(Odometry, "odom", self.get_odom_callback, qos_profile=qos_profile_sensor_data)
         # Store received data
         self.scan_ranges = []
         self.has_scan_received = False
@@ -51,7 +52,13 @@ class ObstacleDetection(Node):
 
         # Set up timer for regular checking
         self.timer = self.create_timer(0.1, self.timer_callback)
-
+    
+    def get_odom_callback(self, msg):
+        self.pose = msg.pose.pose
+        oriList = [self.pose.orientation.x, self.pose.orientation.y, self.pose.orientation.z, self.pose.orientation.w]
+        (roll, pitch, yaw) = euler_from_quaternion(oriList)
+        self.get_logger().info(f"Robot state  {self.pose.position.x, self.pose.position.y, yaw}")
+ 
     def scan_callback(self, msg):
         """Store laser scan data when received"""
         self.scan_ranges = msg.ranges
