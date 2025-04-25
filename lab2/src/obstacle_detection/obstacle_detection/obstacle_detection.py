@@ -102,21 +102,8 @@ class ObstacleDetection(Node):
 
         # !TODO: Implement your obstacle detection logic here!
         # Remember to use obstacle_distance and self.stop_distance in your implementation.
-        index = 0
-        length = len(self.scan_ranges)
-
-        self.get_logger().info(f"List len: {length}")
-
-        for i in range(length//2):
-            self.get_logger().info(f"Lista[i]: {self.scan_ranges[i]}")
-            self.get_logger().info(f"Lista[len-i]: {self.scan_ranges[length-i-1]}")
-            if self.scan_ranges[i] < self.scan_ranges[length-i-1]:
-                index = i
-            else:
-                index = length-i-1
-
-        self.get_logger().info(f"Index: {index}")
-        self.get_logger().info(f"Min_distance: {self.scan_ranges[index]}")
+        min_index = self.scan_ranges.index(obstacle_distance)
+        self.logger.info(f"Closest obstacle at index {min_index} with distance {obstacle_distance:.2f}m")
         
         # For now, just use the teleop command (unsafe - replace with your code)
         twist = self.tele_twist
