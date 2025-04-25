@@ -175,7 +175,6 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(obstacle_detection_launch)
         ),
-        launch_arguments = {'use_sim_time': use_sim_time},
     )
 
     # --- Event Handlers ---
