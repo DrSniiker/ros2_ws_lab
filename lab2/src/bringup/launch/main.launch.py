@@ -113,7 +113,7 @@ def generate_launch_description():
         arguments=[
             '-file', burger_sdf,
             '-entity', 'tb1',
-            '-x', '-1.5', '-y', '-0.5', '-z', '0.01', '-Y', '0.0',
+            '-x', '-0.0', '-y', '-0.5', '-z', '0.01', '-Y', '0.0',
             '-unpause',
         ],
         output='screen',
