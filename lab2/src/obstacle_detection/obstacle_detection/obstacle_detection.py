@@ -34,14 +34,18 @@ class ObstacleDetection(Node):
         # Store received data
         self.scan_ranges = []
         self.has_scan_received = False
+        self.goal_reached = False
         
         # Set up goal point
-        self.x_g = 5.0 
-        self.y_g = 5.0
+        self.x_g = 0.8
+        self.y_g = 1.0
+
+        # set speed
+        self.velocity = 0.25
 
         # Default motion command (slow forward)
         self.tele_twist = Twist()
-        self.tele_twist.linear.x = 0.0
+        self.tele_twist.linear.x = self.velocity
         self.tele_twist.angular.z = 0.0
         self.yaw = 0
 
@@ -49,7 +53,8 @@ class ObstacleDetection(Node):
         self.max_linear_speed = 1.5
         self.min_linear_speed = 0.3
         self.angular_speed_factor = 4.0
-        self.p_regulator = 1
+        self.p_regulator = 2
+        self.distance_tolerance = 0.1
 
         # Set up quality of service
         qos = QoSProfile(depth=10)
@@ -180,18 +185,28 @@ class ObstacleDetection(Node):
         # For now, just use the teleop command (unsafe - replace with your code)
         twist = self.tele_twist
 
-        if self.pose.position.x >= 0:
-            self.get_logger().info("############ STOPPED")
+        # stop at goal
+        if self.euclidean_distance() < self.distance_tolerance:
+            self.goal_reached = True
             twist.linear.x = 0.0
+            twist.angular.z = 0.0
+            self.get_logger().info("############ goal reached") 
 
-        #set steering angle
-        if angle_goal >= 0.05:
+        #set steering angle to goal
+        if angle_goal >= 0.01 or angle_goal <= -0.01:
             self.get_logger().info("########## steering")
             twist.angular.z = angle_goal
         else:
             self.get_logger().info("########## ANGLE REACHED")
             twist.angular.z = 0.0
 
+        if obstacle_distance <= self.stop_distance and self.goal_reached == False:
+            twist.linear.x = 0.0
+            if min_index < 180:
+                twist.angular.z = -math.pi/2
+            else:
+                twist.angular.z = math.pi/2
+            twist.linear.x = self.velocity
 
         # Publish the velocity command
         self.cmd_vel_pub.publish(twist)
