@@ -99,6 +99,7 @@ class ObstacleDetection(Node):
         - Try to find clear paths by checking different parts of the scan data
         """
 
+        self.get_logger().info("#################################")
         # Filter out invalid readings (very small values, infinity, or NaN)
         valid_ranges = [r for r in self.scan_ranges if not math.isinf(r) and not math.isnan(r) and r > 0.01]
         
