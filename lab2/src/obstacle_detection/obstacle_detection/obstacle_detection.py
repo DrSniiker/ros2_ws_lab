@@ -9,6 +9,7 @@ import math
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Pose
 from tf_transformations import euler_from_quaternion
+import time
 
 
 class ObstacleDetection(Node):
@@ -20,6 +21,9 @@ class ObstacleDetection(Node):
     """
     def __init__(self):
         super().__init__("obstacle_detection")
+
+        #wait for rviz
+        time.sleep(5)
         
         # Safety parameters - use ROS parameter
         self.declare_parameter("stop_distance", 0.35)  # Default if not specified
@@ -31,10 +35,21 @@ class ObstacleDetection(Node):
         self.scan_ranges = []
         self.has_scan_received = False
         
+        # Set up goal point
+        self.x_g = 5.0 
+        self.y_g = 5.0
+
         # Default motion command (slow forward)
         self.tele_twist = Twist()
-        self.tele_twist.linear.x = 0.1
+        self.tele_twist.linear.x = 0.0
         self.tele_twist.angular.z = 0.0
+        self.yaw = 0
+
+        # Movement parameters
+        self.max_linear_speed = 1.5
+        self.min_linear_speed = 0.3
+        self.angular_speed_factor = 4.0
+        self.p_regulator = 1
 
         # Set up quality of service
         qos = QoSProfile(depth=10)
@@ -60,6 +75,7 @@ class ObstacleDetection(Node):
         self.pose = msg.pose.pose
         oriList = [self.pose.orientation.x, self.pose.orientation.y, self.pose.orientation.z, self.pose.orientation.w]
         (roll, pitch, yaw) = euler_from_quaternion(oriList)
+        self.yaw = yaw
         self.get_logger().info(f"Robot state  {self.pose.position.x, self.pose.position.y, yaw}")
  
     def scan_callback(self, msg):
@@ -75,6 +91,48 @@ class ObstacleDetection(Node):
         """Regular function to check for obstacles"""
         if self.has_scan_received:
             self.detect_obstacle()
+
+    # NOTE taget från gotogoal 
+    def calculate_steering_angle(self):
+        """Angle toward goal"""
+        return math.atan2(self.y_g - self.pose.position.y, self.x_g - self.pose.position.x)
+
+    def calculate_linear_velocity(self):
+        """Calculate forward speed with deceleration near goal"""
+        distance = self.euclidean_distance()
+
+        # Deceleration zone is twice the tolerance
+        decel_zone = self.distance_tolerance * 2.0
+
+        if distance < decel_zone:
+            # Decelerate as we approach the goal
+            speed = self.min_linear_speed + (
+                self.max_linear_speed - self.min_linear_speed
+            ) * (distance / decel_zone)
+        else:
+            # Normal speed
+            speed = self.max_linear_speed
+
+        # Ensure speed stays within bounds
+        return max(self.min_linear_speed, min(speed, self.max_linear_speed))
+    
+    def euclidean_distance(self):
+        """Distance between current position and goal"""
+        # !FIXME: Mathematical Error in Distance Calculation
+        return math.sqrt(
+            (self.x_g - self.pose.position.x) ** 2
+            + (self.y_g - self.pose.position.y) ** 2
+        )
+    
+    # NOTE Egna funktioner
+    def calculate_goal_angle(self):
+        # return angle towards goal in relataion to the robot
+        goal_angle = self.calculate_steering_angle()
+
+        diff_angle = goal_angle - self.yaw
+        diff_angle = math.atan2(math.sin(diff_angle), math.cos(diff_angle))
+
+        return self.p_regulator * diff_angle
 
     def detect_obstacle(self):
         """
@@ -99,7 +157,6 @@ class ObstacleDetection(Node):
         - Try to find clear paths by checking different parts of the scan data
         """
 
-        self.get_logger().info("#################################")
         # Filter out invalid readings (very small values, infinity, or NaN)
         valid_ranges = [r for r in self.scan_ranges if not math.isinf(r) and not math.isnan(r) and r > 0.01]
         
@@ -115,9 +172,26 @@ class ObstacleDetection(Node):
         # Remember to use obstacle_distance and self.stop_distance in your implementation.
         min_index = self.scan_ranges.index(obstacle_distance)
         self.get_logger().info(f"Closest obstacle at index {min_index} with distance {obstacle_distance:.2f}m")
+
+        # set angle towards goal
+        angle_goal = self.calculate_goal_angle()
+        self.get_logger().info(f"{angle_goal=}")
         
         # For now, just use the teleop command (unsafe - replace with your code)
         twist = self.tele_twist
+
+        if self.pose.position.x >= 0:
+            self.get_logger().info("############ STOPPED")
+            twist.linear.x = 0.0
+
+        #set steering angle
+        if angle_goal >= 0.05:
+            self.get_logger().info("########## steering")
+            twist.angular.z = angle_goal
+        else:
+            self.get_logger().info("########## ANGLE REACHED")
+            twist.angular.z = 0.0
+
 
         # Publish the velocity command
         self.cmd_vel_pub.publish(twist)
