@@ -37,11 +37,11 @@ class ObstacleDetection(Node):
         self.goal_reached = False
         
         # Set up goal point
-        self.x_g = 0.8
-        self.y_g = 1.0
+        self.x_g = 1.6
+        self.y_g = 0.6
 
         # set speed
-        self.velocity = 0.25
+        self.velocity = 0.15
 
         # Default motion command (slow forward)
         self.tele_twist = Twist()
@@ -82,7 +82,7 @@ class ObstacleDetection(Node):
         (roll, pitch, yaw) = euler_from_quaternion(oriList)
         self.yaw = yaw
         self.get_logger().info(f"Robot state  {self.pose.position.x, self.pose.position.y, yaw}")
- 
+
     def scan_callback(self, msg):
         """Store laser scan data when received"""
         self.scan_ranges = msg.ranges
@@ -102,28 +102,7 @@ class ObstacleDetection(Node):
         """Angle toward goal"""
         return math.atan2(self.y_g - self.pose.position.y, self.x_g - self.pose.position.x)
 
-    def calculate_linear_velocity(self):
-        """Calculate forward speed with deceleration near goal"""
-        distance = self.euclidean_distance()
-
-        # Deceleration zone is twice the tolerance
-        decel_zone = self.distance_tolerance * 2.0
-
-        if distance < decel_zone:
-            # Decelerate as we approach the goal
-            speed = self.min_linear_speed + (
-                self.max_linear_speed - self.min_linear_speed
-            ) * (distance / decel_zone)
-        else:
-            # Normal speed
-            speed = self.max_linear_speed
-
-        # Ensure speed stays within bounds
-        return max(self.min_linear_speed, min(speed, self.max_linear_speed))
-    
     def euclidean_distance(self):
-        """Distance between current position and goal"""
-        # !FIXME: Mathematical Error in Distance Calculation
         return math.sqrt(
             (self.x_g - self.pose.position.x) ** 2
             + (self.y_g - self.pose.position.y) ** 2
@@ -140,27 +119,6 @@ class ObstacleDetection(Node):
         return self.p_regulator * diff_angle
 
     def detect_obstacle(self):
-        """
-        TODO: Implement obstacle detection and avoidance!
-        
-        MAIN TASK:
-        - Detect if any obstacle is too close to the robot (closer than self.stop_distance)
-        - If an obstacle is detected, stop the robot's forward motion
-        
-        UNDERSTANDING LASER SCAN DATA:
-        - self.scan_ranges contains distances to obstacles in meters
-        - Each value represents distance at a different angle around the robot
-        - Values less than self.stop_distance indicate a close obstacle
-        
-        CONTROLLING THE ROBOT (Twist message):
-        - twist.linear.x: Forward/backward (positive = forward, negative = backward)
-        - twist.angular.z: Rotation (positive = left, negative = right)
-        - To stop: set twist.linear.x = 0.0 (you can keep angular.z to allow turning)
-        
-        EXTENSION (optional):
-        - For obstacle avoidance, implement turning when obstacles are detected
-        - Try to find clear paths by checking different parts of the scan data
-        """
 
         # Filter out invalid readings (very small values, infinity, or NaN)
         valid_ranges = [r for r in self.scan_ranges if not math.isinf(r) and not math.isnan(r) and r > 0.01]
@@ -173,8 +131,6 @@ class ObstacleDetection(Node):
         # Find the closest obstacle in any direction (full 360° scan)
         obstacle_distance = min(valid_ranges)
 
-        # !TODO: Implement your obstacle detection logic here!
-        # Remember to use obstacle_distance and self.stop_distance in your implementation.
         min_index = self.scan_ranges.index(obstacle_distance)
         self.get_logger().info(f"Closest obstacle at index {min_index} with distance {obstacle_distance:.2f}m")
 
