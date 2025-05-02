@@ -51,9 +51,6 @@ class ObstacleDetection(Node):
         self.multiplier = 0.3
 
         # Movement parameters
-        # self.max_linear_speed = 1.5
-        # self.min_linear_speed = 0.3
-        # self.angular_speed_factor = 4.0
         self.p_regulator = 1.5
         self.distance_tolerance = 0.1
         self.disatance_weight = 1
@@ -138,28 +135,6 @@ class ObstacleDetection(Node):
             return False
 
     def detect_obstacle(self):
-        """
-        TODO: Implement obstacle detection and avoidance!
-        
-        MAIN TASK:
-        - Detect if any obstacle is too close to the robot (closer than self.stop_distance)
-        - If an obstacle is detected, stop the robot's forward motion
-        
-        UNDERSTANDING LASER SCAN DATA:
-        - self.scan_ranges contains distances to obstacles in meters
-        - Each value represents distance at a different angle around the robot
-        - Values less than self.stop_distance indicate a close obstacle
-        
-        CONTROLLING THE ROBOT (Twist message):
-        - twist.linear.x: Forward/backward (positive = forward, negative = backward)
-        - twist.angular.z: Rotation (positive = left, negative = right)
-        - To stop: set twist.linear.x = 0.0 (you can keep angular.z to allow turning)
-        
-        EXTENSION (optional):
-        - For obstacle avoidance, implement turning when obstacles are detected
-        - Try to find clear paths by checking different parts of the scan data
-        """
-
         # Filter out invalid readings (very small values, infinity, or NaN)
         valid_ranges = [r for r in self.scan_ranges if not math.isinf(r) and not math.isnan(r) and r > 0.01]
         
@@ -171,8 +146,6 @@ class ObstacleDetection(Node):
         # Find the closest obstacle in any direction (full 360° scan)
         obstacle_distance = min(valid_ranges)
 
-        # !TODO: Implement your obstacle detection logic here!
-        # Remember to use obstacle_distance and self.stop_distance in your implementation.
         min_index = self.scan_ranges.index(obstacle_distance)
         self.get_logger().info(f"Closest obstacle at index {min_index} with distance {obstacle_distance:.2f}m")
 
@@ -185,9 +158,6 @@ class ObstacleDetection(Node):
             obstacle_neg_angle = min_index_rad + math.pi
         else:
             obstacle_neg_angle = min_index_rad - math.pi
-        
-        self.get_logger().info(f"{min_index=}")
-        # self.get_logger().info(f"{math.degrees(obstacle_neg_angle )=}")
 
         # set angle towards goal
         angle_goal = self.calculate_goal_angle()
@@ -209,57 +179,22 @@ class ObstacleDetection(Node):
         else:
             velocity_weight = 1
 
-        # self.get_logger().info(f"{angle_goal=}")
-        self.get_logger().info(f"### {twist.linear.x=} ###")
-        self.get_logger().info(f"### {twist.angular.z=} ###")
-        # self.get_logger().info(f"{self.yaw=}")
-
-        # set steering angle to goal
-        # if angle_goal >= 0.01 or angle_goal <= -0.01:
-        #     self.get_logger().info("########## steering")
-        #     twist.angular.z = angle_goal
-        # else:
-        #     self.get_logger().info("########## ANGLE REACHED")
-        #     twist.angular.z = 0.0
-
-        
         if self.goal_reached == False:
-            disatance_weight = 1
             velocity_weight_asdf = 1
             steering_weight = 1
             turn_angle = 0
+
             if obstacle_distance <= (self.stop_distance): #om det finns ett hinder nära
                 if self.obst_in_front(min_index):
                     velocity_weight_asdf *= obstacle_distance / self.stop_distance * self.multiplier #fix it form 0 to 1
                 steering_weight = obstacle_distance / self.stop_distance #fix it form 0 to 1
                 turn_angle = obstacle_neg_angle * (1 - steering_weight)
                 self.get_logger().info(f"########## STEERING ###########")
-
-            self.get_logger().info(f"### {math.degrees(turn_angle)=} ###")
-            self.get_logger().info(f"### {disatance_weight=} ###")
             
             twist.linear.x = self.velocity * velocity_weight * velocity_weight_asdf
             twist.angular.z = angle_goal * steering_weight + turn_angle
 
             twist.angular.z = self.limit_rotation(twist.angular.z)
-
-        # set steering angle to goal
-        # if obstacle_distance < self.stop_distance and self.goal_reached == False:
-        #     self.get_logger().info("############ avoiding obsticle!")
-        #     disatance_weight = (obstacle_distance / (self.stop_distance - 0.1)) + 0.1  #TODO if robot is too fat, fix it form 0 to 1
-        #     twist.linear.x = self.velocity * disatance_weight * velocity_weight
-        #     twist.angular.z = angle_goal * disatance_weight + obstacle_neg_angle * (1 - disatance_weight)
-        #     if twist.angular.z > 0:
-        #         self.get_logger().info("================= TURNING LEFT =================")
-        #     else:
-        #         self.get_logger().info("================= TURNING RIGHT =================")
-        # elif self.goal_reached == False:
-        #     if angle_goal >= 0.1 or angle_goal <= -0.1:
-        #         self.get_logger().info("########## steering")
-        #         twist.angular.z = angle_goal
-        #     else:
-        #         self.get_logger().info("########## ANGLE REACHED")
-        #         twist.angular.z = 0.0
 
         # Publish the velocity command
         self.cmd_vel_pub.publish(twist)
