@@ -36,9 +36,9 @@ class ObstacleDetection(Node):
         self.has_scan_received = False
         self.goal_reached = False
         
-        # Set up goal point
-        self.x_g = 0.7
-        self.y_g = 0.0
+        # Set up goal point 
+        self.x_g = 0.8
+        self.y_g = 1.0
 
         # set speed
         self.velocity = 0.2
@@ -184,9 +184,9 @@ class ObstacleDetection(Node):
             steering_weight = 1
             turn_angle = 0
 
-            if obstacle_distance <= (self.stop_distance): #om det finns ett hinder nära
+            if obstacle_distance <= (self.stop_distance + 0.1): #om det finns ett hinder nära
                 if self.obst_in_front(min_index):
-                    velocity_weight_asdf *= obstacle_distance / self.stop_distance * self.multiplier #fix it form 0 to 1
+                    velocity_weight_asdf *= obstacle_distance / self.stop_distance * self.multiplier #fix it form 0 to 1, saktar ned
                 steering_weight = obstacle_distance / self.stop_distance #fix it form 0 to 1
                 turn_angle = obstacle_neg_angle * (1 - steering_weight)
                 self.get_logger().info(f"########## STEERING ###########")
@@ -194,6 +194,7 @@ class ObstacleDetection(Node):
             twist.linear.x = self.velocity * velocity_weight * velocity_weight_asdf
             twist.angular.z = angle_goal * steering_weight + turn_angle
 
+            # limit rotation
             twist.angular.z = self.limit_rotation(twist.angular.z)
 
         # Publish the velocity command

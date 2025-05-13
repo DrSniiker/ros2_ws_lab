@@ -37,8 +37,8 @@ class ObstacleDetection(Node):
         self.goal_reached = False
         
         # Set up goal point
-        self.x_g = 1.6
-        self.y_g = 0.6
+        self.x_g = 1.5
+        self.y_g = 1.5
 
         # set speed
         self.velocity = 0.15
