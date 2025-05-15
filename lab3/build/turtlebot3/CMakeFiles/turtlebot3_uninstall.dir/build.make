@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/rosdev/turtlebot3_ws/src/turtlebot3/turtlebot3
+CMAKE_SOURCE_DIR = /home/rosdev/ros2_ws_lab/lab3/src/turtlebot3/turtlebot3
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rosdev/turtlebot3_ws/build/turtlebot3
+CMAKE_BINARY_DIR = /home/rosdev/ros2_ws_lab/lab3/build/turtlebot3
 
 # Utility rule file for turtlebot3_uninstall.
 
@@ -67,7 +67,7 @@ include CMakeFiles/turtlebot3_uninstall.dir/compiler_depend.make
 include CMakeFiles/turtlebot3_uninstall.dir/progress.make
 
 CMakeFiles/turtlebot3_uninstall:
-	/usr/bin/cmake -P /home/rosdev/turtlebot3_ws/build/turtlebot3/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
+	/usr/bin/cmake -P /home/rosdev/ros2_ws_lab/lab3/build/turtlebot3/ament_cmake_uninstall_target/ament_cmake_uninstall_target.cmake
 
 turtlebot3_uninstall: CMakeFiles/turtlebot3_uninstall
 turtlebot3_uninstall: CMakeFiles/turtlebot3_uninstall.dir/build.make
@@ -82,6 +82,6 @@ CMakeFiles/turtlebot3_uninstall.dir/clean:
 .PHONY : CMakeFiles/turtlebot3_uninstall.dir/clean
 
 CMakeFiles/turtlebot3_uninstall.dir/depend:
-	cd /home/rosdev/turtlebot3_ws/build/turtlebot3 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rosdev/turtlebot3_ws/src/turtlebot3/turtlebot3 /home/rosdev/turtlebot3_ws/src/turtlebot3/turtlebot3 /home/rosdev/turtlebot3_ws/build/turtlebot3 /home/rosdev/turtlebot3_ws/build/turtlebot3 /home/rosdev/turtlebot3_ws/build/turtlebot3/CMakeFiles/turtlebot3_uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/rosdev/ros2_ws_lab/lab3/build/turtlebot3 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rosdev/ros2_ws_lab/lab3/src/turtlebot3/turtlebot3 /home/rosdev/ros2_ws_lab/lab3/src/turtlebot3/turtlebot3 /home/rosdev/ros2_ws_lab/lab3/build/turtlebot3 /home/rosdev/ros2_ws_lab/lab3/build/turtlebot3 /home/rosdev/ros2_ws_lab/lab3/build/turtlebot3/CMakeFiles/turtlebot3_uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/turtlebot3_uninstall.dir/depend
 

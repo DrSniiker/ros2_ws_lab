@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/rosdev/turtlebot3_ws/build/turtlebot3_msgs/turtlebot3_msgs__py
-# Build directory: /home/rosdev/turtlebot3_ws/build/turtlebot3_msgs/turtlebot3_msgs__py
+# Source directory: /home/rosdev/ros2_ws_lab/lab3/build/turtlebot3_msgs/turtlebot3_msgs__py
+# Build directory: /home/rosdev/ros2_ws_lab/lab3/build/turtlebot3_msgs/turtlebot3_msgs__py
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

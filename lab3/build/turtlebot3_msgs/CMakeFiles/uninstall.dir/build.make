@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/rosdev/turtlebot3_ws/src/turtlebot3_msgs
+CMAKE_SOURCE_DIR = /home/rosdev/ros2_ws_lab/lab3/src/turtlebot3_msgs
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/rosdev/turtlebot3_ws/build/turtlebot3_msgs
+CMAKE_BINARY_DIR = /home/rosdev/ros2_ws_lab/lab3/build/turtlebot3_msgs
 
 # Utility rule file for uninstall.
 
@@ -78,6 +78,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/rosdev/turtlebot3_ws/build/turtlebot3_msgs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rosdev/turtlebot3_ws/src/turtlebot3_msgs /home/rosdev/turtlebot3_ws/src/turtlebot3_msgs /home/rosdev/turtlebot3_ws/build/turtlebot3_msgs /home/rosdev/turtlebot3_ws/build/turtlebot3_msgs /home/rosdev/turtlebot3_ws/build/turtlebot3_msgs/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/rosdev/ros2_ws_lab/lab3/build/turtlebot3_msgs && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/rosdev/ros2_ws_lab/lab3/src/turtlebot3_msgs /home/rosdev/ros2_ws_lab/lab3/src/turtlebot3_msgs /home/rosdev/ros2_ws_lab/lab3/build/turtlebot3_msgs /home/rosdev/ros2_ws_lab/lab3/build/turtlebot3_msgs /home/rosdev/ros2_ws_lab/lab3/build/turtlebot3_msgs/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/uninstall.dir/depend
 
