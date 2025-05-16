@@ -1,4 +1,1 @@
-
-float32 pose_x
-float32 pose_y
-bool success
+/home/rosdev/ros2_ws_lab/lab3/build/turtlebot3_msgs/rosidl_cmake/srv/Goal_Response.msg

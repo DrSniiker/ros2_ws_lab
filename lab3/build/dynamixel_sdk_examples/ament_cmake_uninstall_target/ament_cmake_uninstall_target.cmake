@@ -55,3 +55,6 @@ endforeach()
 message(STATUS "Execute custom uninstall script")
 
 # begin of custom uninstall code
+
+# uninstall files installed using the symlink install functions
+include("/home/rosdev/ros2_ws_lab/lab3/build/dynamixel_sdk_examples/ament_cmake_symlink_install/ament_cmake_symlink_install_uninstall_script.cmake")

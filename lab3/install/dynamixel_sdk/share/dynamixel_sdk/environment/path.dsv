@@ -1,1 +1,1 @@
-prepend-non-duplicate-if-exists;PATH;bin
+/home/rosdev/ros2_ws_lab/lab3/build/dynamixel_sdk/ament_cmake_environment_hooks/path.dsv

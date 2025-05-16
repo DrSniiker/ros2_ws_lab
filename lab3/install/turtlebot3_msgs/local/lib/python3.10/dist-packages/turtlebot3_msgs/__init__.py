@@ -1,0 +1,1 @@
+/home/rosdev/ros2_ws_lab/lab3/build/turtlebot3_msgs/rosidl_generator_py/turtlebot3_msgs/__init__.py

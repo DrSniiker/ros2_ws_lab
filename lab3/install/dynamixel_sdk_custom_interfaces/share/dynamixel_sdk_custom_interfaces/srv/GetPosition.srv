@@ -1,6 +1,1 @@
-# Constants
-# Request
-uint8 id
----
-# Response
-int32 position
+/home/rosdev/ros2_ws_lab/lab3/src/DynamixelSDK/ros/dynamixel_sdk_custom_interfaces/srv/GetPosition.srv
