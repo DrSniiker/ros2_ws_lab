@@ -1,7 +1,7 @@
 /home/rosdev/ros2_ws_lab/lab3/build/dynamixel_sdk/CMakeFiles/uninstall.dir
 /home/rosdev/ros2_ws_lab/lab3/build/dynamixel_sdk/CMakeFiles/dynamixel_sdk_uninstall.dir
 /home/rosdev/ros2_ws_lab/lab3/build/dynamixel_sdk/CMakeFiles/dynamixel_sdk.dir
-/home/rosdev/ros2_ws_lab/lab3/build/dynamixel_sdk/CMakeFiles/ament_cmake_python_symlink_dynamixel_sdk.dir
+/home/rosdev/ros2_ws_lab/lab3/build/dynamixel_sdk/CMakeFiles/ament_cmake_python_copy_dynamixel_sdk.dir
 /home/rosdev/ros2_ws_lab/lab3/build/dynamixel_sdk/CMakeFiles/ament_cmake_python_build_dynamixel_sdk_egg.dir
 /home/rosdev/ros2_ws_lab/lab3/build/dynamixel_sdk/CMakeFiles/test.dir
 /home/rosdev/ros2_ws_lab/lab3/build/dynamixel_sdk/CMakeFiles/edit_cache.dir

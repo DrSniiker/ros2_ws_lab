@@ -1,1 +1,2 @@
-/home/rosdev/ros2_ws_lab/lab3/build/turtlebot3_msgs/rosidl_cmake/srv/Dqn_Request.msg
+uint8 action
+bool init

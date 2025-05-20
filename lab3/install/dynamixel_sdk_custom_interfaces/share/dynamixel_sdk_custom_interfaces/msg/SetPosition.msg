@@ -1,1 +1,3 @@
-/home/rosdev/ros2_ws_lab/lab3/src/DynamixelSDK/ros/dynamixel_sdk_custom_interfaces/msg/SetPosition.msg
+# Messages
+uint8 id
+int32 position
